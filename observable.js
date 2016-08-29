@@ -38,13 +38,10 @@
 
 	function makePublisher(o) {
 		for (var i in publisher) {
-			if (publisher.hasOwnProperty(i) && typeof publisher[i] === 'function') {
+			if (publisher.hasOwnProperty(i)) {
 				o[i] = publisher[i];
 			}
 		}
-		o.subscribers = {
-			any: []
-		};
 	}
 
 	var $scope = {};
@@ -67,13 +64,11 @@
 
 	subscribe.addEventListener('click', function () {
 		$scope.$on('sendMessage', controller.eventHandler);
-
 		renderDOM('#list', 'li', 'client subscribed :)');
 	});
 
 	unsubscribe.addEventListener('click', function () {
 		$scope.$off('sendMessage', controller.eventHandler);
-
 		renderDOM('#list', 'li', 'client unsubscribed :(');
 	});
 
